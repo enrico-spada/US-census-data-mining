@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Select helpers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for select_helpers {tidyselect}"><tr><td>select_helpers {tidyselect}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Select helpers</h2>
+
+<h3>Description</h3>
+
+<p>These functions allow you to select variables based on their names.
+</p>
+
+<ul>
+<li> <p><code>starts_with()</code>: Starts with a prefix.
+</p>
+</li>
+<li> <p><code>ends_with()</code>: Ends with a suffix.
+</p>
+</li>
+<li> <p><code>contains()</code>: Contains a literal string.
+</p>
+</li>
+<li> <p><code>matches()</code>: Matches a regular expression.
+</p>
+</li>
+<li> <p><code>num_range()</code>: Matches a numerical range like x01, x02, x03.
+</p>
+</li>
+<li> <p><code>all_of()</code>: Matches variable names in a character vector. All
+names must be present, otherwise an out-of-bounds error is
+thrown.
+</p>
+</li>
+<li> <p><code>any_of()</code>: Same as <code>all_of()</code>, except that no error is thrown
+for names that don't exist.
+</p>
+</li>
+<li> <p><code>everything()</code>: Matches all variables.
+</p>
+</li>
+<li> <p><code>last_col()</code>: Select last variable, possibly with an offset.
+</p>
+</li></ul>
+
+
+
+<h3>Usage</h3>
+
+<pre>
+starts_with(match, ignore.case = TRUE, vars = peek_vars(fn = "starts_with"))
+
+ends_with(match, ignore.case = TRUE, vars = peek_vars(fn = "ends_with"))
+
+contains(match, ignore.case = TRUE, vars = peek_vars(fn = "contains"))
+
+matches(
+  match,
+  ignore.case = TRUE,
+  perl = FALSE,
+  vars = peek_vars(fn = "matches")
+)
+
+num_range(prefix, range, width = NULL, vars = peek_vars(fn = "num_range"))
+
+all_of(x)
+
+any_of(x, ..., vars = peek_vars(fn = "any_of"))
+
+everything(vars = peek_vars(fn = "everything"))
+
+last_col(offset = 0L, vars = peek_vars(fn = "last_col"))
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>match</code></td>
+<td>
+<p>A character vector. If length &gt; 1, the union of the
+matches is taken.</p>
+</td></tr>
+<tr valign="top"><td><code>ignore.case</code></td>
+<td>
+<p>If <code>TRUE</code>, the default, ignores case when matching
+names.</p>
+</td></tr>
+<tr valign="top"><td><code>vars</code></td>
+<td>
+<p>A character vector of variable names. When called
+from inside selecting functions like <code><a href="../../dplyr/html/select.html">dplyr::select()</a></code> these are
+automatically set to the names of the table.</p>
+</td></tr>
+<tr valign="top"><td><code>perl</code></td>
+<td>
+<p>Should Perl-compatible regexps be used?</p>
+</td></tr>
+<tr valign="top"><td><code>prefix</code></td>
+<td>
+<p>A prefix that starts the numeric range.</p>
+</td></tr>
+<tr valign="top"><td><code>range</code></td>
+<td>
+<p>A sequence of integers, like <code>1:5</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>width</code></td>
+<td>
+<p>Optionally, the &quot;width&quot; of the numeric range. For example,
+a range of 2 gives &quot;01&quot;, a range of three &quot;001&quot;, etc.</p>
+</td></tr>
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>An index vector of names or locations.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>These dots are for future extensions and must be empty.</p>
+</td></tr>
+<tr valign="top"><td><code>offset</code></td>
+<td>
+<p>Set it to <code>n</code> to select the nth var from the end.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>In selection context you can also use these operators:
+</p>
+
+<ul>
+<li> <p><code>"/"</code> for taking the difference between two sets of variables.
+</p>
+</li>
+<li> <p><code>":"</code> for selecting a range of consecutive variables.
+</p>
+</li>
+<li> <p><code>"c"</code> for selecting the union of sets of variables.
+</p>
+</li></ul>
+
+<p>The boolean operators were more recently overloaded to operate on
+selections:
+</p>
+
+<ul>
+<li> <p><code>"!"</code> for taking the complement of a set of variables.
+</p>
+</li>
+<li> <p><code>"&amp;"</code> and <code>"|"</code> for selecting the intersection or the union of two
+sets of variables.
+</p>
+</li></ul>
+
+<p>The order of selected columns is determined by the inputs.
+</p>
+
+<ul>
+<li> <p><code>one_of(c("foo", "bar"))</code> selects <code>"foo"</code> first.
+</p>
+</li>
+<li> <p><code>c(starts_with("c"), starts_with("d"))</code> selects all columns
+starting with <code>"c"</code> first, then all columns starting with <code>"d"</code>.
+</p>
+</li></ul>
+
+
+
+<h3>Value</h3>
+
+<p>An integer vector giving the position of the matched variables.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+nms &lt;- names(iris)
+vars_select(nms, starts_with("Petal"))
+vars_select(nms, ends_with("Width"))
+vars_select(nms, contains("etal"))
+vars_select(nms, matches(".t."))
+vars_select(nms, Petal.Length, Petal.Width)
+vars_select(nms, everything())
+vars_select(nms, last_col())
+vars_select(nms, last_col(offset = 2))
+
+# With multiple matchers, the union of the matches is selected:
+vars_select(nms, starts_with(c("Petal", "Sepal")))
+
+# `!` negates a selection:
+vars_select(nms, !ends_with("Width"))
+
+# `&amp;` and `|` take the intersection or the union of two selections:
+vars_select(nms, starts_with("Petal") &amp; ends_with("Width"))
+vars_select(nms, starts_with("Petal") | ends_with("Width"))
+
+# `/` takes the difference of two selections
+vars_select(nms, starts_with("Petal") / ends_with("Width"))
+
+# `all_of()` selects the variables in a character vector:
+vars &lt;- c("Petal.Length", "Petal.Width")
+vars_select(nms, all_of(vars))
+
+# Whereas `all_of()` is strict, `any_of()` allows missing
+# variables.
+try(vars_select(nms, all_of(c("Species", "Genres"))))
+vars_select(nms, any_of(c("Species", "Genres")))
+
+# The lax variant is especially useful to make sure a variable is
+# selected out:
+vars_select(nms, -any_of(c("Species", "Genres")))
+
+# The order of selected columns is determined from the inputs
+vars_select(names(mtcars), starts_with("c"), starts_with("d"))
+vars_select(names(mtcars), one_of(c("carb", "mpg")))
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>tidyselect</em> version 1.0.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

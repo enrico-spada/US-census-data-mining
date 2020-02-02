@@ -1,0 +1,27 @@
+cleartmp                Delete Temporary Html Files
+ctable                  Cross-Tabulation
+define_keywords         Modify Keywords Used In Outputs
+descr                   Univariate Statistics for Numerical Data
+dfSummary               Data frame Summary
+examens                 Bulletin de Notes (Donne simulees)
+exams                   Report Cards - Simulated Data
+freq                    Frequency Tables for Factors and Other Discrete
+                        Data
+label                   Get or Set Variable or Data Frame Labels
+print.list              Print Method for Objects of Class "list"
+print.stby              Print Method for Objects of Class "stby"
+print.summarytools      print.summarytools
+st_css                  Include *summarytools*' _css_ Into Active
+                        Document
+st_options              Query and set summarytools global options
+stby                    Obtain Grouped Statistics With summarytools
+summarytools-package    Extensive Summarizing Tools With Flexible
+                        Output
+tabagisme               Usage du Tabac et etat de Sante (Donnees
+                        simulees)
+tb                      Convert Summarytools Objects into Tibbles
+tobacco                 Tobacco Use and Health - Simulated Dataset
+unlabel                 Clear Variable and Data Frame Label(s)
+use_custom_lang         Import and use a custom language
+view                    view
+what.is                 Obtain Extended Properties of Objects
