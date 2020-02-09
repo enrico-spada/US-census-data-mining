@@ -103,7 +103,7 @@ sapply(raw_data_changed_dtypes, class)
 
 #RAW DATA: FILTER BY YEAR (1994)
 #Consider only 1994 data
-input_data <- raw_data[raw_data$year == 94, ]
+input_data <- raw_data_changed_dtypes[raw_data_changed_dtypes$year == 94, ]
 
 #------------------------#
 #EDA: DUPLICATES
@@ -164,7 +164,6 @@ view(categorical_desc_stat)
 
 
 #---------#
-
 #MEASURABLE
 #logical vector to include only categorical variables
 measurable <- unlist(lapply(input_data_deduplicated, is.numeric))

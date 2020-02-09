@@ -24,9 +24,9 @@ GRINST,state_of_previous_residence,nominal,Not in universe;Utah;Michigan;North C
 HHDFMX,detailed_household_and_family_stat,nominal,Child <18 never marr not in subfamily;Other Rel <18 never marr child of subfamily RP;Other Rel <18 never marr not in subfamily;Grandchild <18 never marr child of subfamily RP;Grandchild <18 never marr not in subfamily;Secondary individual;In group quarters;Child under 18 of RP of unrel subfamily;RP of unrelated subfamily;Spouse of householder;Householder;Other Rel <18 never married RP of subfamily;Grandchild <18 never marr RP of subfamily;Child <18 never marr RP of subfamily;Child <18 ever marr not in subfamily;Other Rel <18 ever marr RP of subfamily;Child <18 ever marr RP of subfamily;Nonfamily householder;Child <18 spouse of subfamily RP;Other Rel <18 spouse of subfamily RP;Other Rel <18 ever marr not in subfamily;Grandchild <18 ever marr not in subfamily;Child 18+ never marr Not in a subfamily;Grandchild 18+ never marr not in subfamily;Child 18+ ever marr RP of subfamily;Other Rel 18+ never marr not in subfamily;Child 18+ never marr RP of subfamily;Other Rel 18+ ever marr RP of subfamily;Other Rel 18+ never marr RP of subfamily;Other Rel 18+ spouse of subfamily RP;Other Rel 18+ ever marr not in subfamily;Child 18+ ever marr Not in a subfamily;Grandchild 18+ ever marr not in subfamily;Child 18+ spouse of subfamily RP;Spouse of RP of unrelated subfamily;Grandchild 18+ ever marr RP of subfamily;Grandchild 18+ never marr RP of subfamily;Grandchild 18+ spouse of subfamily RP
 HHDREL,detailed_household_summary_in_household,nominal,Child under 18 never married;Other relative of householder;Nonrelative of householder;Spouse of householder;Householder;Child under 18 ever married;Group Quarters- Secondary individual;Child 18 or older
 MARSUPWT,instance_weight,continuous,continuous
-MIGMTR1,migration_code-change_in_msa,nominal,Not in universe;Nonmover;MSA to MSA;NonMSA to nonMSA;MSA to nonMSA;NonMSA to MSA;Abroad to MSA;Not identifiable;Abroad to nonMSA
-MIGMTR3,migration_code-change_in_reg,nominal,Not in universe;Nonmover;Same county;Different county same state;Different state same division;Abroad;Different region;Different division same region
-MIGMTR4,migration_code-move_within_reg,nominal,Not in universe;Nonmover;Same county;Different county same state;Different state in West;Abroad;Different state in Midwest;Different state in South;Different state in Northeast
+MIGMTR1,migration_code_change_in_msa,nominal,Not in universe;Nonmover;MSA to MSA;NonMSA to nonMSA;MSA to nonMSA;NonMSA to MSA;Abroad to MSA;Not identifiable;Abroad to nonMSA
+MIGMTR3,migration_code_change_in_reg,nominal,Not in universe;Nonmover;Same county;Different county same state;Different state same division;Abroad;Different region;Different division same region
+MIGMTR4,migration_code_move_within_reg,nominal,Not in universe;Nonmover;Same county;Different county same state;Different state in West;Abroad;Different state in Midwest;Different state in South;Different state in Northeast
 MIGSAME,live_in_this_house_1_year_ago,nominal,Not in universe under 1 year old;Yes;No
 MIGSUN,migration_prev_res_in_sunbelt,nominal,Not in universe;Yes;No
 NOEMP,num_persons_worked_for_employer,continuous,continuous
@@ -36,7 +36,7 @@ PEMNTVTY,country_of_birth_mother,nominal,India;Mexico;United-States;Puerto-Rico;
 PENATVTY,country_of_birth_self,nominal,United-States;Mexico;Puerto-Rico;Peru;Canada;South Korea;India;Japan;Haiti;El-Salvador;Dominican-Republic;Portugal;Columbia;England;Thailand;Cuba;Laos;Panama;China;Germany;Vietnam;Italy;Honduras;Outlying-U S (Guam USVI etc);Hungary;Philippines;Poland;Ecuador;Iran;Guatemala;Holand-Netherlands;Taiwan;Nicaragua;France;Jamaica;Scotland;Yugoslavia;Hong Kong;Trinadad&Tobago;Greece;Cambodia;Ireland
 PRCITSHP,citizenship,nominal,Native- Born in the United States;Foreign born- Not a citizen of U S ;Native- Born in Puerto Rico or U S Outlying;Native- Born abroad of American Parent(s);Foreign born- U S citizen by naturalization
 SEOTR,own_business_or_self_employed,nominal,0;2;1
-VETQVA,fill_inc_questionnaire_for_veteran's_admin,nominal,Not in universe;Yes;No
+VETQVA,fill_inc_questionnaire_for_veteran_s_admin,nominal,Not in universe;Yes;No
 VETYN,veterans_benefits,nominal,0;2;1
 WKSWORK,weeks_worked_in_year,continuous,continuous
 YEAR,year,nominal,94;95
