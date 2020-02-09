@@ -45,8 +45,8 @@ print(sapply(raw_data_changed_dtypes, class))
 
 
 #TARGET VARIABLE: REMAP TO 0, 1
-levels(raw_data_changed_dtypes$target)
-levels(raw_data_changed_dtypes$target) <- c(0, 1)
+#levels(raw_data_changed_dtypes$target)
+#levels(raw_data_changed_dtypes$target) <- c(0, 1)
 
 
 #RAW DATA: FILTER BY YEAR (1994)
@@ -54,4 +54,9 @@ levels(raw_data_changed_dtypes$target) <- c(0, 1)
 input_data_94 <- raw_data_changed_dtypes[raw_data_changed_dtypes$year == 94, ]
 
 
-saveRDS(input_data_94, "../data/1_input_data/input_data_94.rds")
+#saveRDS(input_data_94, "../data/1_input_data/input_data_94.rds")
+write.csv(input_data_94, "../data/1_input_data/input_data_94.csv", row.names = FALSE)
+
+
+#METADATA: SAVE DATA TYPES
+write.csv(as.data.frame(sapply(input_data_94, class)), "../docs/metadata/R_data_types.csv")

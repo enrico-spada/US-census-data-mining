@@ -15,5 +15,7 @@ py_config()
 renv::use_python("C:/Users/espad/Anaconda3/envs/us-census-env/python.exe")
 
 conda_install("us-census-env", "pyreadr")
+conda_install("us-census-env", "scikit-learn")
+
 
 renv::snapshot()

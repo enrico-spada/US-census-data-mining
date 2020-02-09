@@ -10,8 +10,8 @@ library(caret)
 
 
 #---------DATA-----------#
-if (!(deparse(substitute(input_data_94_deduplicated)) %in% ls())) {
-        input_data_94_deduplicated = readRDS("../data/1_input_data/input_data_94_deduplicated")
+if (!(deparse(substitute(prepared_data_94)) %in% ls())) {
+        prepared_data_94 = readRDS("../data/2_eda_prep/prepared_data_94")
         print("Loaded data.")
 } else {
         print("Data already loaded.")
@@ -21,8 +21,8 @@ if (!(deparse(substitute(input_data_94_deduplicated)) %in% ls())) {
 #EDA: INSTANCE_WEIGHT
 #Pearson Correlation matrix between count() and sum(instance_weight for each variable)
 correlation_by_variable <- list()
-for (var in colnames(input_data_94_deduplicated)) {
-        summarized_values = input_data_94_deduplicated %>% group_by_at(vars(var)) %>% transmute(n_records = n(),
+for (var in colnames(prepared_data_94)) {
+        summarized_values = prepared_data_94 %>% group_by_at(vars(var)) %>% transmute(n_records = n(),
                                                                                                 weight = sum(instance_weight))
         correlation_by_variable[[var]] <-
                 cor(summarized_values[2], summarized_values[3])
@@ -56,12 +56,12 @@ write.csv(
 #CATEGORICAL
 #logical vector to include only categorical variables
 categorical <-
-        !unlist(lapply(input_data_94_deduplicated, is.numeric))
+        !unlist(lapply(prepared_data_94, is.numeric))
 
 #change position of target in first column for better visualiation
-df_factors_for_summary <- data.frame(target = input_data_94_deduplicated$target,
-                                     input_data_94_deduplicated[Reduce("&",
-                                                                       data.frame(categorical,!names(input_data_94_deduplicated) == "target"))])
+df_factors_for_summary <- data.frame(target = prepared_data_94$target,
+                                     prepared_data_94[Reduce("&",
+                                                                       data.frame(categorical,!names(prepared_data_94) == "target"))])
 
 #sort factor levels by descending frequency for better visualization
 df_factors_for_summary_sorted_desc <-
@@ -90,13 +90,13 @@ view(categorical_desc_stat)
 #---------#
 #MEASURABLE
 #logical vector to include only categorical variables
-measurable <- unlist(lapply(input_data_94_deduplicated, is.numeric))
+measurable <- unlist(lapply(prepared_data_94, is.numeric))
 
 
 #calculate summary statistics table
 measurable_desc_stat <-
         dfSummary(
-                input_data_94_deduplicated[measurable],
+                prepared_data_94[measurable],
                 plain.ascii = FALSE,
                 style = "grid",
                 graph.magnif = 0.75,
@@ -130,11 +130,11 @@ df_categorical_variables_corr_to_target <-
 
 
 #Chi-squared for every categorical level
-v_target <- input_data_94_deduplicated["target"]
+v_target <- prepared_data_94["target"]
 
 df_categorical_levels_corr_to_target <- as.data.frame(x = c(), y = c(), chisq_pval = c(), cramV = c())
 for (var_name in v_explanatory_vars) {
-        df_var <- input_data_94_deduplicated[var_name]
+        df_var <- prepared_data_94[var_name]
         df_var_dummy <- dummyVars("~ .", data = df_var)
         df_target_var_dummy <-
                 data.frame(df_target, predict(df_var_dummy, newdata = df_var))
