@@ -1,6 +1,3 @@
-as.numeric.factor <- function(x) {as.numeric(levels(x))[x]}
-
-
 #--------PACKAGES--------#
 library(dplyr)
 library(summarytools)
@@ -8,7 +5,7 @@ library(tidyverse)
 library(lsr)
 library(caret)
 
-
+         
 #---------DATA-----------#
 if (!(deparse(substitute(prepared_data_94)) %in% ls())) {
         prepared_data_94 = readRDS("../data/2_eda_prep/prepared_data_94")
@@ -108,7 +105,7 @@ view(measurable_desc_stat)
 
 
 
-#------------------------#
+#--------WORK IN PROGRESS----------------#
 #EDA: CORRELATION WITH TARGET
 
 
@@ -210,11 +207,3 @@ categorical_correlation_result <-
                   by = c("variable" = "x")) %>%
         left_join(df_var_levels_stats,
                   by = c("variable" = "variable", "level" = "level"))
-
-
-
-v1 <- df_categorical_levels_corr_to_target_keys$level
-
-v2 <- df_var_levels_stats$level
-
-v3 <- str_replace_all(v2, "[^[:alnum:]]", ".")

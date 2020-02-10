@@ -1,4 +1,4 @@
-"","sapply(input_data_94, class)"
+"","sapply(input_data, class)"
 "age","integer"
 "class_of_worker","factor"
 "detailed_industry_recode","factor"
